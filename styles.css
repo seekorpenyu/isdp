@@ -1,0 +1,122 @@
+/* Reset some default styles for body and buttons */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styles */
+.header {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+/* Section card styles */
+.card {
+    margin-bottom: 20px;
+}
+
+/* Adjust the position of the card title */
+.card-header {
+    background-color: rgb(92, 95, 104);
+    color: white;
+    position: relative;
+    border-radius: 5px 5px 0 0;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+/* CSS class to center the display button using Flexbox */
+.display-button-section {
+    display: flex;
+    justify-content: center;
+    /* Center horizontally */
+    align-items: center;
+    /* Center vertically */
+    height: 100%;
+    /* Ensure the section takes up the full height */
+}
+
+.display-button {
+    /* You can style the button as needed */
+    background-color: #0074d9;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Adjust the position of the remove button */
+.remove-section {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+/* Style for control buttons */
+.control-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.d-pad-button {
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    cursor: pointer;
+}
+
+.top-button {
+    border-bottom-color: #0074d9;
+    margin-bottom: 20px;
+}
+
+.right-button {
+    border-left-color: #0074d9;
+}
+
+.bottom-button {
+    border-top-color: #0074d9;
+    margin-top: 20px;
+}
+
+.left-button {
+    border-right-color: #0074d9;
+}
+
+
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+}
+
+/* CSS class to style the compass image */
+#compassImage {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image horizontally within its container */
+    max-height: 240px; /* Set the maximum height to limit image size */
+}
+
+/* CSS class to hide section content */
+.hidden-content {
+    display: none;
+}

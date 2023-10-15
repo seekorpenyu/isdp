@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Marine Vessel Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Marine Vessel Dashboard</h1>
+        </div>
+
+        <!-- Virtual control buttons on the right side -->
+        <div class="row">
+            <div class="col-md-2">
+                <div class="display-button-section">
+                    <!-- Button to toggle section visibility on the left side -->
+                    <button id="toggleSectionButton" class="btn btn-primary display-button">Display All</button>
+                </div>
+            </div>
+            <!-- Webcam section in the middle-top -->
+            <div class="col-md-8">
+                <div class="section card" id="webcamSection">
+                    <h2 class="card-header">Webcam</h2>
+                    <div class="card-body">
+                        <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video>
+                    </div>
+                    <button class="btn btn-danger remove-section" id="removeWebcam">x</button>
+                </div>
+            </div>
+            <!-- Virtual control buttons -->
+            <div class="col-md-2 control-buttons">
+                <button id="autoPilot" class="btn btn-success apilot-button">Auto Pilot</button> <!-- Added Auto Pilot button -->
+                <div class="control-buttons">
+                    <button id="moveLeft" class="d-pad-button left-button"></button>
+                <div class="middle-buttons">
+                    <button id="moveTop" class="d-pad-button top-button"></button>
+                    <button id="moveBottom" class="d-pad-button bottom-button"></button>
+                </div>
+                    <button id="moveRight" class="d-pad-button right-button"></button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- Other sections remain unchanged -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="section card" id="navInfoSection">
+                    <h2 class="card-header">Navigation Information</h2>
+                    <div class="card-body">
+                        <p>Speed: 20 km/h</p>
+                        <p>Distance: 100 km</p>
+                        <p>Battery Level: 70%</p>
+                        <p>Power from Solar: 50 W</p>
+                        <p>Destination: Dock A</p>
+                        <p>Duration: 2 hours</p>
+                    </div>
+                    <button class="btn btn-danger remove-section" id="removeNavInfo">x</button>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="section card" id="compassSection">
+                    <h2 class="card-header">Compass</h2>
+                    <div class="card-body">
+                    <!-- Content for the second column of the navigation section goes here (compass preview) -->
+                        <img src="D:\Final Year\ISDP\WebApp\compass.jpg" id="compassImage" alt="Compass Image">
+                    </div>
+                    <button class="btn btn-danger remove-section" id="removeCompass">x</button>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="section card" id="mapSection">
+                    <h2 class="card-header">GPS Map Tracking</h2>
+                    <div class="card-body">
+                        <div id="map" style="height: 300px; background: #ddd;"></div>
+                    </div>
+                    <button class="btn btn-danger remove-section" id="removeMap">x</button>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="section card" id="notificationSection">
+                    <h2 class="card-header">Notification</h2>
+                    <div class="card-body">
+                        <p>Notification content goes here.</p>
+                    </div>
+                    <button class="btn btn-danger remove-section" id="removeNotification">x</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-draggable/2.3.4/vanilla-draggable.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
