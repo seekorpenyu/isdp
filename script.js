@@ -129,7 +129,7 @@ updateCurrentTime();
 //Real-time data update on browser for Zhafiq's Part:
 // Use the URL where your Flask app is hosted
 $(document).ready(function () {
-    var apiUrl = 'https://seekorpenyu.github.io/isdp//api/get_data';  // Replace with the correct URL of your Flask app
+    var apiUrl = 'https://seekorpenyu.github.io/isdp/api/get_data';  // Replace with the correct URL of your Flask app
 
     function updateData() {
         $.ajax({
