@@ -5,90 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
+    
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <title>Marine Vessel Dashboard</title>
 </head>
 <body>
+    <!-- Bootstrap container for the content -->
     <div class="container">
         <div class="header">
-            <h1>Marine Vessel Dashboard</h1>
+            <h1>Marine Vessel Dashboard </h1>
+            <div class="display-button-section">
+                <!-- Button to toggle section visibility on the left side -->
+                <button id="toggleSectionButton" class="btn btn-primary display-button">⟳</button>
+            </div>
+        <div class="time" id="current-time"></div>
         </div>
-
-        <!-- Virtual control buttons on the right side -->
         <div class="row">
-            <div class="col-md-2">
-                <div class="display-button-section">
-                    <!-- Button to toggle section visibility on the left side -->
-                    <button id="toggleSectionButton" class="btn btn-primary display-button">Display All</button>
-                </div>
-            </div>
-            <!-- Webcam section in the middle-top -->
-            <div class="col-md-8">
-                <div class="section card" id="webcamSection">
-                    <h2 class="card-header">Webcam</h2>
-                    <div class="card-body">
-                        <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video>
+            <div class="col-md-9">
+                <!-- Virtual control buttons on the right side -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="row-1">
+                            <div class="section card" id="powerInfoSection">
+                                <h2 class="card-header">Power Info</h2>
+                                <div class="card-body" style="height: 250px;">
+                                <!-- Integration with Python-->
+                                    <!--<py-script src="power.py"></py-script>-->
+                                    <p>Solar Voltage: <span id="solar-voltage">Loading...</span> V</p>
+                                    <p>Battery Voltage: <span id="battery-voltage">Loading...</span> V</p>
+                                    <p>Solar Current: <span id="solar-current">Loading...</span> mA</p>
+                                    <p>Battery Current: <span id="battery-current">Loading...</span> mA</p>
+                                    <p>Battery Percentage: <span id="battery-percentage">Loading...</span>%</p>                                </div>
+                                <button class="btn btn-danger remove-section" id="removePowerInfo">x</button>
+                            </div>
+                        </div>
+                        <div class="row-2 control-buttons">
+                            <button id="autoPilot" class="btn btn-success apilot-button">Auto Pilot</button> <!-- Added Auto Pilot button -->
+                            <div class="control-buttons">
+                                <button id="moveLeft" class="d-pad-button left-button"></button>
+                            <div class="middle-buttons">
+                                <button id="moveTop" class="d-pad-button top-button"></button>
+                                <button id="moveBottom" class="d-pad-button bottom-button"></button>
+                            </div>
+                                <button id="moveRight" class="d-pad-button right-button"></button>
+                            </div>
+                        </div>
                     </div>
-                    <button class="btn btn-danger remove-section" id="removeWebcam">x</button>
-                </div>
-            </div>
-            <!-- Virtual control buttons -->
-            <div class="col-md-2 control-buttons">
-                <button id="autoPilot" class="btn btn-success apilot-button">Auto Pilot</button> <!-- Added Auto Pilot button -->
-                <div class="control-buttons">
-                    <button id="moveLeft" class="d-pad-button left-button"></button>
-                <div class="middle-buttons">
-                    <button id="moveTop" class="d-pad-button top-button"></button>
-                    <button id="moveBottom" class="d-pad-button bottom-button"></button>
-                </div>
-                    <button id="moveRight" class="d-pad-button right-button"></button>
-                </div>
-            </div>
-
-
-        </div>
-
-        <!-- Other sections remain unchanged -->
-        <div class="row">
-            <div class="col-md-4">
-                <div class="section card" id="navInfoSection">
-                    <h2 class="card-header">Navigation Information</h2>
-                    <div class="card-body">
-                        <p>Speed: 20 km/h</p>
-                        <p>Distance: 100 km</p>
-                        <p>Battery Level: 70%</p>
-                        <p>Power from Solar: 50 W</p>
-                        <p>Destination: Dock A</p>
-                        <p>Duration: 2 hours</p>
+                    <!-- Webcam section in the middle-top -->
+                    <div class="col-md-8">
+                        <div class="section card" id="webcamSection">
+                            <h2 class="card-header">Vessel Display</h2>
+                            <div class="card-body" style="height: 370px;">
+                            <!--<img id="video_feed" src="{{ url_for('video_feed') }}" alt="Webcam Video" autoplay style="max-width: 100%; background: #ddd;">-->
+                            <!-- <py-script src="sealv1.py"></py-script> -->
+                            <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video>
+                            <!-- <script src="webcam.js"></script>
+                            <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video> -->
+                            </div>
+                            <button class="btn btn-danger remove-section" id="removeWebcam">x</button>
+                        </div>
                     </div>
-                    <button class="btn btn-danger remove-section" id="removeNavInfo">x</button>
+                </div>
+
+                <!-- Other sections remain unchanged -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="section card" id="boatInfoSection">
+                            <h2 class="card-header">Boat Info</h2>
+                            <div class="card-body" style="height: 260px;">
+                            <!-- Integration with Python-->
+                                <!--<py-script src="mpu9250.py"></py-script>-->
+                                <p>Speed: 20 km/h</p>
+                                <p>Distance: 100 km</p>
+                                <p>Destination: Dock A</p>
+                                <p>Duration: 2 hours</p>
+                            </div>
+                            <button class="btn btn-danger remove-section" id="removeBoatInfo">x</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="section card" id="compassSection">
+                            <h2 class="card-header">Compass</h2>
+                            <div class="card-body">
+                            <!-- Content for the second column of the navigation section goes here (compass preview) -->
+                                <img src="compass.jpg" id="compassImage" alt="Compass Image">
+                            </div>
+                            <button class="btn btn-danger remove-section" id="removeCompass">x</button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="section card" id="mapSection">
+                            <h2 class="card-header">GPS Tracking</h2>
+                            <div class="card-body">
+                                <img src="map.png" id="compassImage" alt="Compass Image">
+                            </div>
+                            <button class="btn btn-danger remove-section" id="removeMap">x</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div class="col-md-3">
-                <div class="section card" id="compassSection">
-                    <h2 class="card-header">Compass</h2>
-                    <div class="card-body">
-                    <!-- Content for the second column of the navigation section goes here (compass preview) -->
-                        <img src="https://github.com/seekorpenyu/isdp/blob/main/compass.jpg?raw=true" id="compassImage" alt="Compass Image">
-                    </div>
-                    <button class="btn btn-danger remove-section" id="removeCompass">x</button>
-                </div>
-            </div>
-
-            <div class="col-md-5">
-                <div class="section card" id="mapSection">
-                    <h2 class="card-header">GPS Map Tracking</h2>
-                    <div class="card-body">
-                        <div id="map" style="height: 300px; background: #ddd;"></div>
-                    </div>
-                    <button class="btn btn-danger remove-section" id="removeMap">x</button>
-                </div>
-            </div>
-
-            <div class="col-md-6">
                 <div class="section card" id="notificationSection">
                     <h2 class="card-header">Notification</h2>
-                    <div class="card-body">
+                    <div class="card-body" style="height: 710px;">
                         <p>Notification content goes here.</p>
                     </div>
                     <button class="btn btn-danger remove-section" id="removeNotification">x</button>
@@ -100,5 +125,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-draggable/2.3.4/vanilla-draggable.min.js"></script>
     <script src="script.js"></script>
+    <!--<script src="{{ url_for('static', filename='script.js') }}"></script>-->
 </body>
 </html>
