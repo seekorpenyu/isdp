@@ -2,29 +2,56 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    
+    background-image: url('bg.jpg'); /* Replace with the path to your background image */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top right, top left; /* Position the image at the top right and top left corners */
+}
+
+/* Background container for the wallpaper */
+.container {
+    background-color: rgba(255, 255, 255, 0.5); /* Add a background color to the Bootstrap container to make it visible */
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
 }
 
 /* Header styles */
 .header {
     text-align: center;
     margin: 20px 0;
-    font-size: 24px;
+    background-color: #0074d9;
+    color: #fff;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.time {
+    text-align: center; 
+    font-size: 17px;
+    background-color: orange; 
+    color: #0074d9;
+    border-radius: 0px 0px 5px 5px;
+    padding: 10px;
 }
 
 /* Section card styles */
 .card {
+    background-color: rgb(222, 80, 80, 0);
     margin-bottom: 20px;
 }
 
 /* Adjust the position of the card title */
 .card-header {
     background-color: rgb(92, 95, 104);
+    text-align: center;
     color: white;
     position: relative;
     border-radius: 5px 5px 0 0;
 }
 
 .card-body {
+    background-color: rgba(255, 255, 255, 0.7);
     padding: 10px;
 }
 
@@ -41,8 +68,9 @@ body {
 
 .display-button {
     /* You can style the button as needed */
-    background-color: #0074d9;
-    color: white;
+    background-color: #ffffff;
+    font-size: 20px;
+    color: #0074d9;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -69,6 +97,7 @@ body {
 }
 
 .d-pad-button {
+    background-color:transparent;
     width: 0;
     height: 0;
     border: 20px solid transparent;
