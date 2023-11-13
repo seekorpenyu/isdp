@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNL_3XYpzUb0Sw10zOslWMKxH3G5teBSo&callback=initMap" async defer></script>
-
     <!--    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     -->
@@ -107,8 +105,7 @@
                                     <div class="compass">
                                         <div class="needle"></div>
                                         <div class="secondary-needle"></div>
-                                    </div>
-                                    <script src="compass.js"></script> 
+                                    </div> 
                                 </div>
                             </div>
                             <button class="btn btn-danger remove-section" id="removeCompass">x</button>
@@ -120,6 +117,8 @@
                             <h2 class="card-header">GPS Tracking</h2>
                             <div class="card-body">
                                 <div id="map" style="height: 240px;"></div>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNL_3XYpzUb0Sw10zOslWMKxH3G5teBSo&callback=initMap" 
+                                        async defer></script>
                             </div>
                             <button class="btn btn-danger remove-section" id="removeMap">x</button>
                         </div>
