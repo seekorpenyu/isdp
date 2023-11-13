@@ -21,7 +21,7 @@ body {
 .header {
     text-align: center;
     margin: 20px 0;
-    background-color: #0074d9;
+    background: linear-gradient(135deg, #3e4a59, #232b35);
     color: #fff;
     border-radius: 5px 5px 5px 5px;
 }
@@ -29,8 +29,8 @@ body {
 .time {
     text-align: center; 
     font-size: 17px;
-    background-color: orange; 
-    color: #0074d9;
+    background-color: #3e4a59; 
+    color: #00a8cc;
     border-radius: 0px 0px 5px 5px;
     padding: 10px;
 }
@@ -70,11 +70,23 @@ body {
     /* You can style the button as needed */
     background-color: #ffffff;
     font-size: 20px;
-    color: #0074d9;
+    color: #00a8cc;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+
+.display-button:hover {
+    background-color: #00a8cc !important; /* Set the background color for success class */
+    color: white !important; /* Set the font color for success class */
+    border: none ;
+}
+
+.display-button:active {
+    background-color: #0190af !important; /* Set the background color for success class */
+    color: white !important; /* Set the font color for success class */
+    border: none ;
 }
 
 /* Adjust the position of the remove button */
@@ -82,6 +94,21 @@ body {
     position: absolute;
     top: 5px;
     right: 5px;
+}
+
+/* Autopilot button color*/
+
+.btn-success {
+    background-color: #232b35; /* Set the background color for success class */
+    color: #00a8cc; /* Set the font color for success class */
+}
+
+
+/* Override styles for hover state */
+.btn-success:hover {
+    background-color: #00a8cc !important; /* Set the background color for success class */
+    color: white !important; /* Set the font color for success class */
+    border: none ;
 }
 
 /* Style for control buttons */
@@ -105,21 +132,34 @@ body {
 }
 
 .top-button {
-    border-bottom-color: #0074d9;
+    border-bottom-color: #00a8cc;
     margin-bottom: 20px;
 }
 
 .right-button {
-    border-left-color: #0074d9;
+    border-left-color: #00a8cc;
 }
 
 .bottom-button {
-    border-top-color: #0074d9;
+    border-top-color: #00a8cc;
     margin-top: 20px;
 }
 
 .left-button {
-    border-right-color: #0074d9;
+    border-right-color: #00a8cc;
+}
+
+.top-button:active {
+    border-bottom-color: #232b35; /* Set the background color for success class */
+}
+.bottom-button:active {
+    border-top-color: #232b35; /* Set the background color for success class */
+}
+.right-button:active {
+    border-left-color: #232b35; /* Set the background color for success class */
+}
+.left-button:active {
+    border-right-color: #232b35; /* Set the background color for success class */
 }
 
 
@@ -149,3 +189,117 @@ body {
 .hidden-content {
     display: none;
 }
+
+/* Speedometer section content */
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*height: 100vh;*/
+    margin: 0;
+    padding: 10px;
+}
+
+.gauge {
+    position: relative;
+    width: 150px;
+    height: 75px;
+    background-color: #00a8cc;
+    border-radius: 75px 75px 0 0;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.small-semi-circle {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 75px;
+    height: 37.5px;
+    background: rgb(92, 95, 104);
+    border-radius: 75px 75px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.level {
+    position: absolute;
+    width: 150px;
+    height: 75px;
+    transform-origin: 50% 100%;
+    border-radius: 75px 75px 0 0;
+    background: linear-gradient(135deg, #3e4a59, #232b35);
+    transition: transform 0.5s ease-out;
+}
+
+.value {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.speed-text {
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+    color: #fff;
+}
+
+/*Compass content goes here*/
+
+.compass {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: url('compass.jpg') center center no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.needle,
+.secondary-needle {
+    position: absolute;
+    top: 10%;
+    left: 38.4%;
+    width: 50px; /* Adjusted width at the center */
+    height: 80px;
+    transform-origin: 50% 100%;
+    clip-path: polygon(50% 0%, 60% 20%, 50% 100%, 40% 20%); /* Arrow shape */
+}
+
+.needle {
+    background-color: #ff0000; /* Needle color */
+    animation: rotateNeedle 50s linear infinite; /* Rotation animation */
+}
+
+.secondary-needle {
+    background-color: #0000ff; /* Secondary needle color */
+    animation: rotateSecondaryNeedle 50s linear infinite; /* Rotation animation */
+}
+
+@keyframes rotateNeedle {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotateSecondaryNeedle {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(540deg);
+    }
+}
+
+
