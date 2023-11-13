@@ -36,16 +36,16 @@
                                 <div class="card-body" style="height: 250px;">
                                 <!-- Integration with Python-->
                                     <!--<py-script src="power.py"></py-script>-->
-                                    <p>Solar Voltage: <span id="solar-voltage">Loading...</span> V</p>
-                                    <p>Battery Voltage: <span id="battery-voltage">Loading...</span> V</p>
-                                    <p>Solar Current: <span id="solar-current">Loading...</span> mA</p>
-                                    <p>Battery Current: <span id="battery-current">Loading...</span> mA</p>
-                                    <p>Battery Percentage: <span id="battery-percentage">Loading...</span>%</p>                                </div>
+                                    <p>Solar Voltage: <span id="solar-voltage">0</span> V</p>
+                                    <p>Battery Voltage: <span id="battery-voltage">0</span> V</p>
+                                    <p>Solar Current: <span id="solar-current">0</span> mA</p>
+                                    <p>Battery Current: <span id="battery-current">0</span> mA</p>
+                                    <p>Battery Percentage: <span id="battery-percentage">0</span>%</p>                                </div>
                                 <button class="btn btn-danger remove-section" id="removePowerInfo">x</button>
                             </div>
                         </div>
                         <div class="row-2 control-buttons">
-                            <button id="autoPilot" class="btn btn-success apilot-button">Auto Pilot</button> <!-- Added Auto Pilot button -->
+                            <button id="autoPilot" class="btn btn-success">Auto Pilot</button> <!-- Added Auto Pilot button -->
                             <div class="control-buttons">
                                 <button id="moveLeft" class="d-pad-button left-button"></button>
                             <div class="middle-buttons">
@@ -80,7 +80,15 @@
                             <div class="card-body" style="height: 260px;">
                             <!-- Integration with Python-->
                                 <!--<py-script src="mpu9250.py"></py-script>-->
-                                <p>Speed: 20 km/h</p>
+                                <div class="body">
+                                    <div class="gauge">
+                                        <div id="level" class="level"></div>
+                                        <div id="value" class="value">0 km/h</div>
+                                        <div id="smallSemiCircle" class="small-semi-circle">
+                                            <p class="speed-text">Speed</p>
+                                        </div>
+                                    </div>
+                                </div><br>
                                 <p>Distance: 100 km</p>
                                 <p>Destination: Dock A</p>
                                 <p>Duration: 2 hours</p>
@@ -91,9 +99,15 @@
                     <div class="col-md-4">
                         <div class="section card" id="compassSection">
                             <h2 class="card-header">Compass</h2>
-                            <div class="card-body">
+                            <div class="card-body" style="height: 260px;">
                             <!-- Content for the second column of the navigation section goes here (compass preview) -->
-                                <img src="compass.jpg" id="compassImage" alt="Compass Image">
+                                <div class="body">
+                                    <div class="compass">
+                                        <div class="needle"></div>
+                                        <div class="secondary-needle"></div>
+                                    </div>
+                                    <script src="compass.js"></script> 
+                                </div>
                             </div>
                             <button class="btn btn-danger remove-section" id="removeCompass">x</button>
                         </div>
@@ -124,6 +138,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-draggable/2.3.4/vanilla-draggable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script src="script.js"></script>
     <!--<script src="{{ url_for('static', filename='script.js') }}"></script>-->
 </body>
