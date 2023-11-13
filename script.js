@@ -152,33 +152,7 @@ updateGauge();
 
 
 
-//Real-time data update on browser for Zhafiq's Part:
-// Use the URL where your Flask app is hosted
-$(document).ready(function () {
-    var apiUrl = 'http://localhost:5000/api/get_data';  // Replace with the correct URL of your Flask app
 
-    function updateData() {
-        $.ajax({
-            url: apiUrl,
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                // Update HTML content with received data
-                $('#solar-voltage').text(data.solar_voltage);
-                $('#battery-voltage').text(data.battery_voltage);
-                $('#solar-current').text(data.solar_current);
-                $('#battery-current').text(data.battery_current);
-                $('#battery-percentage').text(data.battery_percentage);
-            },
-            error: function () {
-                console.log('Error fetching data.');
-            }
-        });
-    }
-
-    // Periodically update data (e.g., every 5 seconds)
-    setInterval(updateData, 3000);
-});
 
 //Google map live location
 function initMap() {
