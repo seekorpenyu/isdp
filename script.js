@@ -180,8 +180,40 @@ $(document).ready(function () {
     setInterval(updateData, 3000);
 });
 
+//Google map live location
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 6,
+        center: { lat: 3.1390, lng: 101.6869 } // Default center (Kuala Lumpur, Malaysia)
+    });
 
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var userLocation = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
 
+            map.setCenter(userLocation);
+
+            var marker = new google.maps.Marker({
+                position: userLocation,
+                map: map,
+                title: 'Your Location'
+            });
+        }, function () {
+            handleLocationError(true, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, map.getCenter());
+    }
+}
+
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    console.error(browserHasGeolocation ?
+        'Error: The Geolocation service failed.' :
+        'Error: Your browser doesn\'t support geolocation.');
+}
 
 
 
