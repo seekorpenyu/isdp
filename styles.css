@@ -271,7 +271,7 @@ body {
     width: 50px; /* Adjusted width at the center */
     height: 80px;
     transform-origin: 50% 100%;
-    clip-path: polygon(50% 0%, 60% 20%, 50% 100%, 40% 20%); /* Arrow shape */
+    clip-path: polygon(50% 0%, 60% 80%, 50% 100%, 40% 80%); /* Arrow shape */
 }
 
 .needle {
