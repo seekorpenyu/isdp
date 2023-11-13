@@ -77,17 +77,19 @@ document.getElementById('moveBottom').addEventListener('click', () => moveToggle
 document.getElementById('moveLeft').addEventListener('click', () => moveToggleButton('left'));
 
 // JavaScript to toggle Auto Pilot and Cancel Auto Pilot
+
+
 document.getElementById('autoPilot').addEventListener('click', function () {
     const autoPilotButton = document.getElementById('autoPilot');
     
     if (autoPilotButton.innerText === 'Auto Pilot') {
         autoPilotButton.innerText = 'Manual Pilot';
-        autoPilotButton.classList.remove('btn-success'); // Remove the success class
-        autoPilotButton.classList.add('btn-danger'); // Add the danger class (red)
+        autoPilotButton.classList.remove('btn-success');
+        autoPilotButton.classList.add('btn-danger');
     } else {
         autoPilotButton.innerText = 'Auto Pilot';
-        autoPilotButton.classList.remove('btn-danger'); // Remove the danger class
-        autoPilotButton.classList.add('btn-success'); // Add the success class (green)
+        autoPilotButton.classList.remove('btn-danger');
+        autoPilotButton.classList.add('btn-success');
     }
 });
 
@@ -126,10 +128,34 @@ setInterval(updateCurrentTime, 1000);
 // Call `updateCurrentTime` initially to display the current time immediately
 updateCurrentTime();
 
+//Gauge Section here
+
+function updateGauge() {
+    const gaugeValue = Math.floor(Math.random() * 200); // Simulating speed in km/h
+    const level = document.querySelector('.level');
+    const valueDisplay = document.querySelector('.value');
+
+    anime({
+        targets: level,
+        rotate: (gaugeValue / 200) * 180, // Rotating needle from 0 to 180 degrees
+        easing: 'easeOutQuad',
+    });
+
+    valueDisplay.innerText = gaugeValue + ' km/h';
+}
+
+// Update the gauge every 2 seconds
+setInterval(updateGauge, 2000);
+
+// Initial update
+updateGauge();
+
+
+
 //Real-time data update on browser for Zhafiq's Part:
 // Use the URL where your Flask app is hosted
 $(document).ready(function () {
-    var apiUrl = 'https://seekorpenyu.github.io/isdp/api/get_data';  // Replace with the correct URL of your Flask app
+    var apiUrl = 'http://localhost:5000/api/get_data';  // Replace with the correct URL of your Flask app
 
     function updateData() {
         $.ajax({
@@ -153,6 +179,7 @@ $(document).ready(function () {
     // Periodically update data (e.g., every 5 seconds)
     setInterval(updateData, 3000);
 });
+
 
 
 
