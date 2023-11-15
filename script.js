@@ -9,6 +9,9 @@ if (window.DeviceOrientationEvent) {
         var secondaryNeedle = document.querySelector('.secondary-needle');
         needle.style.transform = 'rotate(' + alpha + 'deg)';
         secondaryNeedle.style.transform = 'rotate(' + (alpha + 180) + 'deg)';
+        // Update rotation value on the page
+        var rotationValue = document.getElementById('rotationValue');
+        rotationValue.innerText = Math.round(alpha) + '°';
     });
 } else {
     console.log("Device orientation not supported");
