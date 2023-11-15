@@ -1,3 +1,19 @@
+//Compass Sensor
+// Check if DeviceOrientationEvent is supported
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(event) {
+        var alpha = event.alpha; // Get the compass heading from the event
+
+        // Rotate the needles
+        var needle = document.querySelector('.needle');
+        var secondaryNeedle = document.querySelector('.secondary-needle');
+        needle.style.transform = 'rotate(' + alpha + 'deg)';
+        secondaryNeedle.style.transform = 'rotate(' + (alpha + 180) + 'deg)';
+    });
+} else {
+    console.log("Device orientation not supported");
+}
+
 //Google map live location
 let map;
 let marker;
