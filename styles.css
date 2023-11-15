@@ -276,30 +276,9 @@ body {
 
 .needle {
     background-color: #ff0000; /* Needle color */
-    animation: rotateNeedle 50s linear infinite; /* Rotation animation */
 }
 
 .secondary-needle {
     background-color: #0000ff; /* Secondary needle color */
-    animation: rotateSecondaryNeedle 50s linear infinite; /* Rotation animation */
 }
-
-@keyframes rotateNeedle {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes rotateSecondaryNeedle {
-    from {
-        transform: rotate(180deg);
-    }
-    to {
-        transform: rotate(540deg);
-    }
-}
-
 
