@@ -281,4 +281,12 @@ body {
 .secondary-needle {
     background-color: #0000ff; /* Secondary needle color */
 }
-
+.rotation-value {
+    position: absolute;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+}
