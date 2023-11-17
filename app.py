@@ -1,10 +1,9 @@
-# file.py
-
 from flask import Flask, jsonify
+from flask_cors import CORS
 import random
-import time
 
 app = Flask(__name__, template_folder='', static_folder='')
+CORS(app)  # Enable CORS for all routes
 
 # Constants and variables
 sample_interval = 1  # 1 second
