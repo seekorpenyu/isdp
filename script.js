@@ -226,6 +226,25 @@ setInterval(updateGauge, 2000);
 // Initial update
 updateGauge();
 
+// Function to update power system information
+function updatePowerInfo() {
+    // Make an AJAX request to the Flask API endpoint
+    fetch('http://172.18.62.146:5000/api/get_data')
+        .then(response => response.json())
+        .then(data => {
+            // Update HTML elements with the received data
+            document.getElementById('solar-voltage').innerText = data.solar_voltage;
+            document.getElementById('battery-voltage').innerText = data.battery_voltage;
+            document.getElementById('solar-current').innerText = data.solar_current;
+            document.getElementById('battery-current').innerText = data.battery_current;
+            document.getElementById('battery-percentage').innerText = data.battery_percentage;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+// Update power system information every second
+setInterval(updatePowerInfo, 3000);
+
 
 
 
