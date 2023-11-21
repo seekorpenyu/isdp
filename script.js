@@ -207,13 +207,13 @@ updateCurrentTime();
 //Gauge Section here
 
 function updateGauge() {
-    const gaugeValue = Math.floor(Math.random() * 200); // Simulating speed in km/h
+    const gaugeValue = Math.floor(Math.random() * 50); // Simulating speed in km/h
     const level = document.querySelector('.level');
     const valueDisplay = document.querySelector('.value');
 
     anime({
         targets: level,
-        rotate: (gaugeValue / 200) * 180, // Rotating needle from 0 to 180 degrees
+        rotate: (gaugeValue / 50) * 180, // Rotating needle from 0 to 180 degrees
         easing: 'easeOutQuad',
     });
 
