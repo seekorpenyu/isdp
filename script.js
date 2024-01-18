@@ -1,20 +1,30 @@
 //Compass Sensor
 // Check if DeviceOrientationEvent is supported
-if (window.DeviceOrientationEvent) {
+if (window.DeviceOrientationEvent && navigator.geolocation) {
     window.addEventListener('deviceorientation', function(event) {
         var alpha = event.alpha; // Get the compass heading from the event
 
         // Rotate the needles
         var needle = document.querySelector('.needle');
         var secondaryNeedle = document.querySelector('.secondary-needle');
-        needle.style.transform = 'rotate(' + alpha + 'deg)';
-        secondaryNeedle.style.transform = 'rotate(' + (alpha + 180) + 'deg)';
+        needle.style.transform = 'rotate(' + (360 - alpha) + 'deg)';
+        secondaryNeedle.style.transform = 'rotate(' + (180 - alpha) + 'deg)';
+
         // Update rotation value on the page
         var rotationValue = document.getElementById('rotationValue');
-        rotationValue.innerText = Math.round(alpha) + '°';
+        var displayedValue = Math.round(360 - alpha) % 360; // Use modulo to ensure the range is 0 to 359
+        rotationValue.innerText = displayedValue + '°';
+    });
+
+    // Get the device's current location
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        console.log("Latitude: " + latitude + "°, Longitude: " + longitude + "°");
     });
 } else {
-    console.log("Device orientation not supported");
+    console.log("Device orientation or Geolocation not supported");
 }
 
 //Google map live location
