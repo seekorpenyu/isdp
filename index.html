@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">-->
+
     <!--    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
     <script defer src="https://pyscript.net/latest/pyscript.js"></script>
     -->
@@ -20,7 +21,9 @@
             <h1>Marine Vessel Dashboard </h1>
             <div class="display-button-section">
                 <!-- Button to toggle section visibility on the left side -->
-                <button id="toggleSectionButton" class="btn btn-primary display-button">⟳</button>
+                <button id="toggleSectionButton" class="btn display-button">⟳</button>
+                <span style="margin-right: 10px;"></span> <!-- Add space here -->
+                <button id="startStop" class="btn play-button">▷</button> <!-- Added Auto Pilot button -->
             </div>
         <div class="time" id="current-time"></div>
         </div>
@@ -34,18 +37,18 @@
                                 <h2 class="card-header">Power System</h2>
                                 <div class="card-body" style="height: 250px;">
                                 <!-- Integration with Python-->
-                                    <!--<py-script src="power.py"></py-script>-->
-                                    <p>Solar Voltage: <span id="solar-voltage">0</span> V</p>
-                                    <p>Battery Voltage: <span id="battery-voltage">0</span> V</p>
-                                    <p>Solar Current: <span id="solar-current">0</span> mA</p>
-                                    <p>Battery Current: <span id="battery-current">0</span> mA</p>
-                                    <p>Battery Percentage: <span id="battery-percentage">0</span>%</p>                                
+                                    <p id="INA219_Voltage">Motor Voltage: 0</p>
+                                    <p id="INA219_Current">Motor Current: 0</p>
+                                    <p id="INA219_Power">Motor Power: 0</p>
+                                    <p id="INA219_Accumulated_Energy">Motor Energy Consumption: 0</p>
+                                    <p id="Calculated_Power_ACS712">RPi Power: 0</p>
+                                    <p id="Accumulated_Energy_ACS712">RPi Energy Consumption: 0</p>              
                                 </div>
                                 <button class="btn btn-danger remove-section" id="removePowerInfo">x</button>
                             </div>
                         </div>
                         <div class="row-2 control-buttons">
-                            <button id="autoPilot" class="btn btn-success">Auto Pilot</button> <!-- Added Auto Pilot button -->
+                            <button id="runStop" class="btn btn-success">Motor ON</button> <!-- Added Auto Pilot button -->
                             <div class="control-buttons">
                                 <button id="moveLeft" class="d-pad-button left-button"></button>
                             <div class="middle-buttons">
@@ -54,6 +57,11 @@
                             </div>
                                 <button id="moveRight" class="d-pad-button right-button"></button>
                             </div>
+                            <div class="speed-buttons">
+                                <span class="slider-label"><b><i>L</i></b></span>
+                                <input type="range" min="1" max="3" value="2" class="speed-slider" id="speedSlider">
+                                <span class="slider-label"><b><i>H</i></b></span>
+                            </div>                            
                         </div>
                     </div>
                     <!-- Webcam section in the middle-top -->
@@ -63,11 +71,14 @@
                             <div class="card-body" style="height: 370px;">
                             <!--<img id="video_feed" src="{{ url_for('video_feed') }}" alt="Webcam Video" autoplay style="max-width: 100%; background: #ddd;">-->
                             <!-- <py-script src="sealv1.py"></py-script> -->
-                            <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video> 
-                            <!--<img src="http://192.168.137.65:8000/stream.mjpg" width="620" height="350" />-->
+                            <img src="http://raspberrypi:8000/stream.mjpg" class="img-fluid" alt="Live feed"/>
                             <!-- <script src="webcam.js"></script>
                             <video id="webcam" autoplay style="max-width: 100%; background: #ddd;"></video> -->
                             </div>
+                            <form class="centertext" id="changeStreamForm" action="http://raspberrypi:8000/change_stream" method="post">
+                                <input type="text" id="newIP" placeholder="Enter new IP address">
+                                <button type="submit">Change Stream Source</button>
+                            </form>
                             <button class="btn btn-danger remove-section" id="removeWebcam">x</button>
                         </div>
                     </div>
@@ -84,15 +95,23 @@
                                 <div class="body">
                                     <div class="gauge">
                                         <div id="level" class="level"></div>
-                                        <div id="value" class="value">0 km/h</div>
+                                        <div id="value" class="value">0 m/s</div>
                                         <div id="smallSemiCircle" class="small-semi-circle">
                                             <p class="speed-text">Speed</p>
                                         </div>
                                     </div>
-                                </div><br>
-                                <p>Distance: 100 km</p>
-                                <p>Destination: Dock A</p>
-                                <p>Duration: 2 hours</p>
+                                </div>
+                                <p><b>Gyrometer (Roll, Pitch, Yaw):</b></p>
+                                <div class="body2">
+                                    <div id="boat">
+                                        <div class="boat-face front"></div>
+                                        <div class="boat-face back"></div>
+                                        <div class="boat-face top"></div>
+                                        <div class="boat-face bottom"></div>
+                                        <div class="boat-face left"></div>
+                                        <div class="boat-face right"></div>
+                                    </div>
+                                </div>    
                             </div>
                             <button class="btn btn-danger remove-section" id="removeBoatInfo">x</button>
                         </div>
@@ -107,7 +126,7 @@
                                         <div class="needle"></div>
                                         <div class="secondary-needle"></div>
                                         <div class="rotation-value" id="rotationValue">0°</div>
-                                    </div> 
+                                    </div>
                                 </div>
                             </div>
                             <button class="btn btn-danger remove-section" id="removeCompass">x</button>
@@ -119,7 +138,7 @@
                             <h2 class="card-header">GPS Tracking</h2>
                             <div class="card-body">
                                 <div id="map" style="height: 240px;"></div>
-                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNL_3XYpzUb0Sw10zOslWMKxH3G5teBSo&callback=initMap" 
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSSsQxN6S2Cw0risJW9uaWFrUdSdQBb8I&callback=initMap" 
                                         async defer></script>
                             </div>
                             <button class="btn btn-danger remove-section" id="removeMap">x</button>
@@ -131,7 +150,19 @@
                 <div class="section card" id="notificationSection">
                     <h2 class="card-header">Notification</h2>
                     <div class="card-body" style="height: 710px;">
-                        <p>Notification content goes here.</p>
+                        <!--<p>Notification content goes here.</p>--> 
+                        <div id="image-counts" style="display: none;">  
+                            <div id="temperature"></div>
+                            <p><b>Camera Detection:</b></p>
+                            <p><button onclick="downloadImages()">Download Images</button></p>    
+                            <p>Checkpoint: <span id="checkpoint-count"></span></p>
+                            <p>Checkpoint 2: <span id="checkpoint2-count"></span></p>
+                            <p>Obstacle: <span id="obstacle-count"></span></p>
+                            <p><b>Navigation:</b></p>
+                            <p id="distance">Distance: <span id="distance-value"></span> m</p>
+                            <p>Destination: </p>
+                            <p>Duration: <span id="duration"></span> (h:m:s)</p>
+                        </div>
                     </div>
                     <button class="btn btn-danger remove-section" id="removeNotification">x</button>
                 </div>
