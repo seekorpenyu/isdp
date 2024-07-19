@@ -2,17 +2,20 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    
-    background-image: url('bg.jpg'); /* Replace with the path to your background image */
+
+    background-image: url('bg.jpg');
+    /* Replace with the path to your background image */
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: top right, top left; /* Position the image at the top right and top left corners */
+    background-position: top right, top left;
+    /* Position the image at the top right and top left corners */
 }
 
 /* Background container for the wallpaper */
 .container {
-    background-color: rgba(255, 255, 255, 0.5); /* Add a background color to the Bootstrap container to make it visible */
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Add a background color to the Bootstrap container to make it visible */
     border-radius: 5px 5px 5px 5px;
     padding: 10px;
 }
@@ -27,9 +30,9 @@ body {
 }
 
 .time {
-    text-align: center; 
+    text-align: center;
     font-size: 17px;
-    background-color: #3e4a59; 
+    background-color: #3e4a59;
     color: #00a8cc;
     border-radius: 0px 0px 5px 5px;
     padding: 10px;
@@ -55,15 +58,26 @@ body {
     padding: 10px;
 }
 
-/* CSS class to center the display button using Flexbox */
-.display-button-section {
-    display: flex;
-    justify-content: center;
-    /* Center horizontally */
-    align-items: center;
-    /* Center vertically */
-    height: 100%;
-    /* Ensure the section takes up the full height */
+.play-button {
+    /* You can style the button as needed */
+    background-color: #ffffff;
+    font-size: 20px;
+    color: #00a8cc; /* Default color for play state */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.play-button.stop {
+    background-color: red; /* Color for stop state */
+    color: white;
+}
+
+.play-button:hover {
+    background-color: #00a8cc !important; /* Set the background color for success class */
+    color: white !important; /* Set the font color for success class */
+    border: none;
 }
 
 .display-button {
@@ -77,16 +91,16 @@ body {
     margin-bottom: 10px;
 }
 
-.display-button:hover {
-    background-color: #00a8cc !important; /* Set the background color for success class */
-    color: white !important; /* Set the font color for success class */
-    border: none ;
+.hidden {
+    display: none;
 }
 
-.display-button:active {
-    background-color: #0190af !important; /* Set the background color for success class */
-    color: white !important; /* Set the font color for success class */
-    border: none ;
+.display-button:hover {
+    background-color: #00a8cc !important;
+    /* Set the background color for success class */
+    color: white !important;
+    /* Set the font color for success class */
+    border: none;
 }
 
 /* Adjust the position of the remove button */
@@ -99,16 +113,20 @@ body {
 /* Autopilot button color*/
 
 .btn-success {
-    background-color: #232b35; /* Set the background color for success class */
-    color: #00a8cc; /* Set the font color for success class */
+    background-color: #232b35;
+    /* Set the background color for success class */
+    color: #00a8cc;
+    /* Set the font color for success class */
 }
 
 
 /* Override styles for hover state */
 .btn-success:hover {
-    background-color: #00a8cc !important; /* Set the background color for success class */
-    color: white !important; /* Set the font color for success class */
-    border: none ;
+    background-color: #00a8cc !important;
+    /* Set the background color for success class */
+    color: white !important;
+    /* Set the font color for success class */
+    border: none;
 }
 
 /* Style for control buttons */
@@ -124,7 +142,7 @@ body {
 }
 
 .d-pad-button {
-    background-color:transparent;
+    background-color: transparent;
     width: 0;
     height: 0;
     border: 20px solid transparent;
@@ -150,19 +168,79 @@ body {
 }
 
 .top-button:active {
-    border-bottom-color: #232b35; /* Set the background color for success class */
+    border-bottom-color: #232b35;
+    /* Set the background color for success class */
 }
+
 .bottom-button:active {
-    border-top-color: #232b35; /* Set the background color for success class */
+    border-top-color: #232b35;
+    /* Set the background color for success class */
 }
+
 .right-button:active {
-    border-left-color: #232b35; /* Set the background color for success class */
+    border-left-color: #232b35;
+    /* Set the background color for success class */
 }
+
 .left-button:active {
-    border-right-color: #232b35; /* Set the background color for success class */
+    border-right-color: #232b35;
+    /* Set the background color for success class */
 }
 
+/* Style for the speed slider */
+.speed-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.speed-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
 
+.speed-slider:hover {
+    opacity: 1;
+}
+
+/* Style for the slider thumb */
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #00a8cc; /* Match the background color of speed buttons */
+    cursor: pointer;
+    border: 2px solid #00a8cc; /* Match the border of speed buttons */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.speed-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #00a8cc; /* Match the background color of speed buttons */
+    cursor: pointer;
+    border: 2px solid #00a8cc; /* Match the border of speed buttons */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Change thumb style on hover and active states */
+.speed-slider::-webkit-slider-thumb:hover,
+.speed-slider::-webkit-slider-thumb:active,
+.speed-slider::-moz-range-thumb:hover,
+.speed-slider::-moz-range-thumb:active {
+    background-color: #007399; /* Match the hover color of speed buttons */
+    border-color: #007399; /* Match the hover border color of speed buttons */
+}
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -181,8 +259,10 @@ body {
     max-width: 100%;
     height: auto;
     display: block;
-    margin: 0 auto; /* Center the image horizontally within its container */
-    max-height: 240px; /* Set the maximum height to limit image size */
+    margin: 0 auto;
+    /* Center the image horizontally within its container */
+    max-height: 240px;
+    /* Set the maximum height to limit image size */
 }
 
 /* CSS class to hide section content */
@@ -268,19 +348,24 @@ body {
     position: absolute;
     top: 10%;
     left: 38.4%;
-    width: 50px; /* Adjusted width at the center */
+    width: 50px;
+    /* Adjusted width at the center */
     height: 80px;
     transform-origin: 50% 100%;
-    clip-path: polygon(50% 0%, 60% 80%, 50% 100%, 40% 80%); /* Arrow shape */
+    clip-path: polygon(50% 0%, 60% 80%, 50% 100%, 40% 80%);
+    /* Arrow shape */
 }
 
 .needle {
-    background-color: #ff0000; /* Needle color */
+    background-color: #ff0000;
+    /* Needle color */
 }
 
 .secondary-needle {
-    background-color: #0000ff; /* Secondary needle color */
+    background-color: #0000ff;
+    /* Secondary needle color */
 }
+
 .rotation-value {
     position: absolute;
     top: 50%;
@@ -290,4 +375,72 @@ body {
     font-weight: bold;
     background: #232b35;
     color: white;
+}
+
+.centertext {
+    text-align: center;
+}
+
+/*Boat Simulation*/
+.body2 {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    transform: translate(-60%, -40%);
+}
+
+
+#boat {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.boat-face {
+    position: absolute;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.front {
+    transform: translateZ(50px);
+    width: 50px;
+    height: 100px;
+    background-image: url('boat-top.png');
+}
+
+.back {
+    transform: rotateY(180deg) translateZ(0px);
+    width: 50px;
+    height: 100px;
+    background-image: url('boat.png');
+}
+
+.left {
+    transform: rotateY(90deg) translateX(-25px) translateZ(25px);
+    width: 50px;
+    height: 100px;
+    background-image: url('boat-left.png');
+}
+
+.right {
+    transform: rotateY(-90deg) translateX(25px) translateZ(25px);
+    width: 50px;
+    height: 100px;
+    background-image: url('boat-right.png');
+}
+
+.top {
+    transform: rotateX(-90deg) translateY(-25px) translateZ(75px);
+    width: 50px;
+    height: 50px;
+    background-image: url('boat-back.png');
+}
+
+.bottom {
+    transform: rotateX(90deg) translateY(25px) translateZ(25px);
+    width: 50px;
+    height: 50px;
+    background-image: url('boat-front.png');
 }
